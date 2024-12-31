@@ -1,7 +1,16 @@
 {
   "extends": "@adonisjs/tsconfig/tsconfig.app.json",
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "nodenext",
     "rootDir": "./",
-    "outDir": "./build"
+    "outDir": "./build",
+    "paths": {
+      "#repositories/*": ["./app/repositories/*"],
+      "#providers/*": ["./providers/*"],
+      "#types/*": ["./types/*"],
+      "#contracts/*": ["./app/contracts/*"],
+    }
   }
 }
