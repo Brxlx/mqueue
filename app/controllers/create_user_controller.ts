@@ -8,10 +8,11 @@ import { CreateUserService } from '#services/create_user_service'
 export default class CreateUserController {
   constructor(private createuserService: CreateUserService) {}
   /**
-   * Handle to create a new user service
+   * Handle to createNewUserService
    */
   public async handle({ request, response }: HttpContext) {
-    const { email, password } = await request.validateUsing(CreateUserValidator)
+    // const { email, password } = await request.validateUsing(CreateUserValidator)
+    const { email, password } = request.only(['email', 'password'])
 
     const user = await this.createuserService.execute({ email, password })
     return response.status(201).json(user)
