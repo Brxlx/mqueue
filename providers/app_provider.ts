@@ -2,6 +2,7 @@ import { ApplicationService } from '@adonisjs/core/types'
 import { UsersRepository } from '../app/repositories/users_repository.js'
 import { CreateUserService } from '#services/create_user_service'
 import { RepositoryContract } from '../app/contratcs/repositories.js'
+import { AuthenticateUserService } from '#services/authenticate_user_service'
 
 export default class AppProvider {
   constructor(protected app: ApplicationService) {}
@@ -11,11 +12,22 @@ export default class AppProvider {
       return new UsersRepository()
     })
 
-    // Registra o service
+    /**
+     *  Register all services
+     */
     this.app.container.bind(CreateUserService, async () => {
       const repo = await this.app.container.make(RepositoryContract.UsersRepository)
       return new CreateUserService(repo)
     })
+
+    this.app.container.bind(AuthenticateUserService, async () => {
+      const repo = await this.app.container.make(RepositoryContract.UsersRepository)
+      return new AuthenticateUserService(repo)
+    })
+
+    /**
+     * End of services
+     */
   }
 
   async boot() {

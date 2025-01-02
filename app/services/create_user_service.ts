@@ -1,10 +1,9 @@
 import { inject } from '@adonisjs/core'
 import { Hash } from '@adonisjs/core/hash'
 import { Argon } from '@adonisjs/core/hash/drivers/argon'
-import type { UsersRepositoryInterface } from '#repositories/users_repository_interface.js'
 import { InvalidPasswordError, UserAlreadyExistsError } from '#exceptions/user_service_errors'
 import { RepositoryContract } from '../contratcs/repositories.js'
-// import { UsersRepository } from '#repositories/users_repository.js'
+
 @inject()
 export class CreateUserService {
   constructor(private usersRepository: RepositoryContract.UsersRepository) {}
@@ -21,5 +20,9 @@ export class CreateUserService {
 
     const hashedPassword = await new Hash(new Argon({})).make(password)
     const user = await this.usersRepository.create({ email, passwordHash: hashedPassword })
+
+    return {
+      email: user.email,
+    }
   }
 }
