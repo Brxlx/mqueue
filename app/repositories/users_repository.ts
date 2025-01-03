@@ -1,7 +1,6 @@
 import User from '#models/user'
 import { inject } from '@adonisjs/core'
 import { RepositoryContract } from '../contratcs/repositories.js'
-import { DateTime } from 'luxon'
 
 @inject()
 export class UsersRepository extends RepositoryContract.UsersRepository {

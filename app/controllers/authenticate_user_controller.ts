@@ -5,7 +5,7 @@ import { HttpContext } from '@adonisjs/core/http'
 @inject()
 export default class AuthenticateUserController {
   constructor(private authenticateUserService: AuthenticateUserService) {}
-  public async handle({ request, response, auth }: HttpContext) {
+  public async handle({ request, response }: HttpContext) {
     const { email, password } = request.only(['email', 'password'])
 
     const { token } = await this.authenticateUserService.execute({ email, password })

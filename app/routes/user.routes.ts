@@ -1,3 +1,4 @@
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 // import { middleware } from '#start/kernel'
 
@@ -13,6 +14,12 @@ export function userRoutes() {
         .as('create_user')
 
       router.post('/users/session', [AuthenticateUserController, 'handle'])
+
+      router
+        .get('/teste', () => {
+          return 'show de bola'
+        })
+        .use(middleware.auth())
     })
     .prefix('/api/v1')
 }
