@@ -1,4 +1,3 @@
-import { CreateUserValidator } from '#validators/create_user_validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 

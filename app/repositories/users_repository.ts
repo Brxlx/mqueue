@@ -1,6 +1,7 @@
 import User from '#models/user'
 import { inject } from '@adonisjs/core'
 import { RepositoryContract } from '../contratcs/repositories.js'
+import db from '@adonisjs/lucid/services/db'
 
 @inject()
 export class UsersRepository extends RepositoryContract.UsersRepository {
@@ -19,7 +20,14 @@ export class UsersRepository extends RepositoryContract.UsersRepository {
 
   async create(user: Partial<User>) {
     console.log(user)
-    return await User.create(user)
+
+    const newUser = await db
+      .insertQuery<User>()
+      .table('users')
+      .insert({ email: user.email, password_hash: user.passwordHash, created_at: new Date() })
+      .returning(['id', 'email'])
+
+    return newUser[0]
   }
 
   async createToken(userId: string): Promise<string> {

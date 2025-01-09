@@ -21,6 +21,8 @@ export class CreateUserService {
     const hashedPassword = await new Hash(new Argon({})).make(password)
     const user = await this.usersRepository.create({ email, passwordHash: hashedPassword })
 
+    console.log('no service: ', user)
+
     return {
       email: user.email,
     }
