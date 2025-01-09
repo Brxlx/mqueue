@@ -1,0 +1,10 @@
+###
+@name=create_user
+
+POST http://localhost:3333/api/v1/users
+Content-Type: application/json
+
+{
+  "email": "teste@teste.com",
+  "password": "12345678"
+}
