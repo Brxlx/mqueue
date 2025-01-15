@@ -4,9 +4,13 @@ import { CreateUserService } from '#services/create_user_service'
 import { RepositoryContract } from '../app/contratcs/repositories.js'
 import { AuthenticateUserService } from '#services/authenticate_user_service'
 
+// TODO: Separate providers for each service
 export default class AppProvider {
   constructor(protected app: ApplicationService) {}
 
+  /**
+   * Register all repositories
+   */
   register() {
     this.app.container.bind(RepositoryContract.UsersRepository, async () => {
       return new UsersRepository()

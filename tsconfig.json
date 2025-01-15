@@ -3,14 +3,23 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
     "rootDir": "./",
     "outDir": "./build",
     "paths": {
-      "#repositories/*": ["./app/repositories/*"],
-      "#providers/*": ["./providers/*"],
-      "#types/*": ["./types/*"],
-      "#contracts/*": ["./app/contracts/*"],
+      "#repositories/*": [
+        "./app/repositories/*"
+      ],
+      "#providers/*": [
+        "./providers/*"
+      ],
+      "#types/*": [
+        "./types/*"
+      ],
+      "#contracts/*": [
+        "./app/contracts/*"
+      ],
     }
   }
 }

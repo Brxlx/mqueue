@@ -10,7 +10,7 @@ import { Database } from '@adonisjs/lucid/database'
  * @class DatabaseProvider
  * @description Implementa verificação de conectividade usando o container DI do AdonisJS
  */
-export default class DatabaseProvider {
+export default class PingDatabaseProvider {
   constructor(protected app: ApplicationService) {}
 
   /**
@@ -53,7 +53,7 @@ export default class DatabaseProvider {
       const command = await this.app.container.make(PingDatabase)
       await command.run()
     } catch (error) {
-      console.error('[DatabaseProvider] Erro na verificação do banco:', error)
+      console.error(`[${PingDatabase.name}] Erro na verificação do banco:`, error)
 
       process.exit(1)
     }
